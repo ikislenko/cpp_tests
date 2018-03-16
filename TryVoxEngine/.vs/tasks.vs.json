@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-window",
+      "appliesTo": "src/graphics/window.h",
+      "type": "launch"
+    },
+    {
+      "taskName": "task-window",
+      "appliesTo": "src/graphics/window.cpp",
+      "type": "launch"
+    }
+  ]
+}
