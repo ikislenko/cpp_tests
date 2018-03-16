@@ -2,17 +2,20 @@
 
 namespace tryvox { 
 	namespace graphics {
-		void windowResize(GLFWwindow *window, int width, int height);
+		
+		void window_resize(GLFWwindow *window, int width, int height);
+		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 		Window::Window(const char *title, int width, int height) 
 		{
 			m_Title = title;
 			m_Width = width;
 			m_Height = height;
-			if (!init()) 
-			{
 
-			}
+			if (!init())
+				glfwTerminate();
+
+			INSTANCE = this;
 		}
 
 		Window::~Window() 
@@ -39,7 +42,8 @@ namespace tryvox {
 			}
 
 			glfwMakeContextCurrent(m_Window);
-			glfwSetWindowSizeCallback(m_Window, windowResize);
+			glfwSetWindowUserPointer(m_Window, this);
+			glfwSetWindowSizeCallback(m_Window, window_resize);
 
 			if (glewInit() != GLEW_OK)
 			{
@@ -58,8 +62,6 @@ namespace tryvox {
 		void Window::update()
 		{
 			glfwPollEvents();
-			//glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
-		
 			glfwSwapBuffers(m_Window);
 		}
 
@@ -68,8 +70,14 @@ namespace tryvox {
 			return glfwWindowShouldClose(m_Window) == 1;
 		}
 
-		void windowResize (GLFWwindow *window, int width, int height) {
+		void window_resize (GLFWwindow *window, int width, int height) 
+		{
 			glViewport(0, 0, width, height);
+		}
+
+		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
+			Window* win = (Window*) glfwGetWindowUserPointer(window);
 		}
 	}
 }

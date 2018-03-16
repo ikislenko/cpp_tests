@@ -73,6 +73,8 @@
     <IncludePath>$(SolutionDir)\Dependencies\GLEW\include;$(SolutionDir)\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Dependencies\GLEW\lib;$(SolutionDir)\Dependencies\GLFW\lib-vc2015;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\bin\$(Configuration)\intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
